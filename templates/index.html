@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Data</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+    <!-- id="craiglist-listings" -->
+    <!-- NASA MARS News -->
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="heading">Latest Mars News</h2>
+        <h4>{{mars.news_title}}</h4>
+        <p>{{mars.news_p}}</p>
+      </div>
+    </div>
+
+    <!-- Featured Image, Weather Data and Mars Facts -->
+    <div class= "container">
+      <div class="row">
+        <div class="col-md-8">
+            <h2 class="heading">Featured Mars Image</h2>
+            <img src={{mars.image}} alt="Featured Image" style="height: 60%; width: 100%"/>
+        </div>
+
+        <div class="col-md-4">
+          <div style="border-style:groove;padding:10px">
+            <h4 class="heading" style="font-weight: bold;">Current Weather on Mars</h4>
+            <p>{{mars.weather_data}}</p>
+          </div>
+          <br>
+          <h4 class="heading" style="font-weight: bold;">Mars Facts</h4>
+          <div>{{mars.mars_facts|safe}}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mars Emispheres -->
+    <div class= "container">
+        <div class="row">
+          <div class="col-md-12">
+              <h2 class="heading">Mars Hemispheres</h2>
+              <hr>
+              <!--iterate though a list in a flask template and 
+                generating an image and associated title-->
+              {% for hemisphere_img in mars.mars_hemispheres %}
+                <div class = "col-sm-6">
+                  <img src = {{hemisphere_img.img_url}} alt="Hemisphere Image" height="60%" width="100%" >
+                  <h4><b>{{hemisphere_img.title}}</b> </h4>
+                </div>
+              {% endfor %}
+          </div>
+  </div>
+</body>
+
+</html>
+
